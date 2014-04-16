@@ -2,6 +2,8 @@ from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from MyBCbb import settings
 
+admin.autodiscover()
+
 urlpatterns = [
     # Examples:
     # url(r'^$', 'MyBCbb.views.home', name='home'),
