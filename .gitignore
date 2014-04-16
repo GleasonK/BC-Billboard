@@ -1,0 +1,19 @@
+n files
+KGBlog/bin/
+bin/*
+bin/
+
+## Other Virtualenv files
+KGBlog/kgbl/
+lib/
+lib/*
+
+KGBlog/lib/
+KGBlog/include/
+
+## .DS_Store
+.DS_Store
+
+## Python Files
+*.pyc
+staticfiles
