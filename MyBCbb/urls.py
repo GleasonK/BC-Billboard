@@ -1,5 +1,6 @@
 from django.conf.urls import include, url, patterns
 from django.contrib import admin
+#from MyBCbb import settings
 
 urlpatterns = [
     # Examples:
@@ -9,8 +10,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 ]
 
-urlpatterns += patterns('',
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': settings.STATIC_ROOT,
-    }),
- )
+# urlpatterns += patterns('',
+#     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
+#         'document_root': settings.STATIC_ROOT,
+#     }),
+#  )
