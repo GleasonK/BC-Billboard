@@ -1,5 +1,6 @@
 ## Virtualenv
 BCbb/
+staticfiles/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
