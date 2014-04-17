@@ -19,3 +19,11 @@ urlpatterns += patterns('',
         'document_root': settings.STATIC_ROOT,
     }),
  )
+
+## Serve user uploaded files
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+   )

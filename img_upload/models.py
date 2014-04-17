@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
-import PIL
+from django.utils import timezone
+import datetime
+## Need do download Pillow for image handling
+#  http://python-imaging.github.io/Pillow/
 
 # Create your models here.
 
@@ -30,18 +33,32 @@ class Image(models.Model):
 	description = models.TextField()
 	albums = models.ManyToManyField(Album, blank=True)
 
-	def save(self):
-		filename = self.get_image_filename()
-		# filename = self.get_image_filename()
-  #   if not filename == '':
-  #       img = Image.open(filename)
-  #       img.thumbnail((512,512), Image.ANTIALIAS)
-  #       img.save(self.get_medium_filename())
-
-
-
 	# auto
 	attending = models.ManyToManyField(Attending)
 	user = models.ForeignKey(User, null=False, blank=True)
-	added = models.DateTimeField(auto_now_add=True)
+	pub_date = models.DateTimeField(auto_now_add=True)
+
+	def save(self):
+		filename = self.get_image_filename()
+		# filename = self.get_image_filename()
+		if not filename == '':
+			img = Image.open(filename)
+			img.thumbnail((350,350), Image.ANTIALIAS)
+			img.save(self.get_medium_filename())
+
+	def is_upcoming_event(self):
+		'''
+		Return whether event is occuring within a month from current date
+		'''
+		now = timezone.now()
+		return datetime.timedelta(hours = -3) <= self.eDate < datetime.timedelta(days=30)
+	is_upcoming_event.admin_order_field = 'eDate'
+	is_upcoming_event.boolean = True
+	is_upcoming_event.short_description = 'Event Occurring Soon?'
+
+	def __unicode__(self):
+		return self.title
+		
+
+
 

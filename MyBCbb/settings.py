@@ -93,6 +93,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
+MEDIA_ROOT = 'mediafiles'
+MEDIA_URL = '/media/'
+
 # Static asset configuration
 
 STATIC_ROOT = 'staticfiles'
