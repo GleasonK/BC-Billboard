@@ -60,5 +60,18 @@ class Image(models.Model):
 		return self.title
 		
 
+class ImageAdmin(admin.ModelAdmin):
+	search_fields = ["title"]
+	list_display = ["__unicode__","title","user", "eDate", "tags", "description", "attending"]
+	list_filter = ["tags", "album"]
 
+class AlbumAdmin(admin.ModelAdmin):
+	search_fields = ["title"]
+	list_display = ["title"]
+
+class TagAdmin(admin.ModelAdmin):
+	list_display = ["tag"]
+
+class AttendingAdmin(admin.ModelAdmin):
+	list_display = ["user"]
 
