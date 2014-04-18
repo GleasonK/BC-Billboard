@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'south',
-    
+    'img_upload',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,6 +59,18 @@ WSGI_APPLICATION = 'MyBCbb.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
+
+### For Heroku ###
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'db_name',                      
+#         'USER': 'db_user',
+#         'PASSWORD': 'db_user_password',
+#         'HOST': ''
+#     }
+# }
 
 DATABASES = {
     'default': {

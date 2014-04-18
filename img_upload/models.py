@@ -19,11 +19,8 @@ class Album(models.Model):
 	def __unicode__(self):
 		return self.title
 
-class Attending(models.Model):
-	user = models.ForeignKey(User)
-	image = models.ForeignKey(Image)
-	def __unicode__(self):
-		return self.user
+
+
 
 class Image(models.Model):
 	title = models.CharField(max_length=60, null=False, blank = False)
@@ -34,7 +31,7 @@ class Image(models.Model):
 	albums = models.ManyToManyField(Album, blank=True)
 
 	# auto
-	attending = models.ManyToManyField(Attending)
+	#attending = models.ManyToManyField(Attending)
 	user = models.ForeignKey(User, null=False, blank=True)
 	pub_date = models.DateTimeField(auto_now_add=True)
 
@@ -58,20 +55,9 @@ class Image(models.Model):
 
 	def __unicode__(self):
 		return self.title
-		
 
-class ImageAdmin(admin.ModelAdmin):
-	search_fields = ["title"]
-	list_display = ["__unicode__","title","user", "eDate", "tags", "description", "attending"]
-	list_filter = ["tags", "album"]
-
-class AlbumAdmin(admin.ModelAdmin):
-	search_fields = ["title"]
-	list_display = ["title"]
-
-class TagAdmin(admin.ModelAdmin):
-	list_display = ["tag"]
-
-class AttendingAdmin(admin.ModelAdmin):
-	list_display = ["user"]
-
+class Attending(models.Model):
+	user = models.ForeignKey(User)
+	image = models.ForeignKey(Image)
+	def __unicode__(self):
+		return self.user
