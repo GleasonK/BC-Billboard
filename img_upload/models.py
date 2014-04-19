@@ -20,9 +20,6 @@ class Album(models.Model):
 	def __unicode__(self):
 		return self.title
 
-
-
-
 class Image(models.Model):
 	title = models.CharField(max_length=60, null=False, blank = False)
 	eDate = models.DateTimeField()
@@ -30,7 +27,8 @@ class Image(models.Model):
 	tags = models.ManyToManyField(Tag, blank=True)
 	description = models.TextField()
 	albums = models.ManyToManyField(Album, blank=True)
-
+	##Add facebook event link? Add location field?
+	##Separate based on ForeignKey(Event) / ForeignKey(Image)
 	# auto
 	#attending = models.ManyToManyField(Attending)
 	user = models.ForeignKey(User, null=False, blank=True)
@@ -85,21 +83,26 @@ class Image(models.Model):
 			pass
 		super(Image, self).delete()
 
-
 	def thumbnail(self):
 		return """<a href="/media/%s"><img border="0" alt="" src="/media/%s" height="40" /></a> """ % (
 			(self.image.name, self.image.name))
 	thumbnail.allow_tags = True
+
+	def album_(self):
+		return '\n'.join([a.title for a in self.albums.all()])
+
+	def tags_(self):
+		return '\n'.join([t.tag for t in self.tags.all()])
 
 	def is_upcoming_event(self):
 		'''
 		Return whether event is occuring within a month from current date
 		'''
 		now = timezone.now()
-		return datetime.timedelta(hours = -3) <= self.eDate < datetime.timedelta(days=30)
+		return now - datetime.timedelta(hours = 3) <= self.eDate < now + datetime.timedelta(days=30)
 	is_upcoming_event.admin_order_field = 'eDate'
 	is_upcoming_event.boolean = True
-	is_upcoming_event.short_description = 'Event Occurring Soon?'
+	is_upcoming_event.short_description = 'UE?'
 
 	def __unicode__(self):
 		return self.title
@@ -107,5 +110,7 @@ class Image(models.Model):
 class Attending(models.Model):
 	user = models.ForeignKey(User)
 	image = models.ForeignKey(Image)
+
+	## Need unicode so it only adds user name and not user object
 	def __unicode__(self):
-		return self.user
+		return unicode(self.user)
