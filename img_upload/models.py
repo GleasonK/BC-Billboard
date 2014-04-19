@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
 from django.utils import timezone
-import datetime
+import datetime, os
+from PIL import Image as PImage
 ## Need do download Pillow for image handling
 #  http://python-imaging.github.io/Pillow/
 
@@ -35,13 +36,60 @@ class Image(models.Model):
 	user = models.ForeignKey(User, null=False, blank=True)
 	pub_date = models.DateTimeField(auto_now_add=True)
 
+	##Enter Size (ex: "m") to get the path to that photo
+	def get_image_path(self, size=''):
+		return os.sep.join([
+			os.path.dirname(self.image.path),
+			self.get_image_filename(size)
+		])
+
+	## Get the path to the directory
+	def get_image_dir(self):
+		return os.path.dirname(self.image.path)
+
+	## Get the image url ("media/images/...")
+	def get_image_url(self):
+		return self.image.url
+
+	##Get the location name for HMTL ("images/%Y/%m/...")
+	def get_image_file_loc(self):
+		return self.image.name
+
+	## If empty (first call) return the absolute path to image
+	## When calling for size, return with 'size'_'file'.jpg
+	def get_image_filename(self, size=''):
+		if size != '':
+			return '_'.join([size,os.path.basename(self.image.path)])
+		else:
+			return ''.join([size,os.path.basename(self.image.path)])
+
+	def get_medium_filename(self):
+		return self.get_image_path("m")
+		#return str(os.path.basename(self.image.path))
+	## Make a save function that saves the file as well as a small version
+	## of the file
 	def save(self):
-		filename = self.get_image_filename()
+		super(Image,self).save()
+		filename = self.get_image_path()
 		# filename = self.get_image_filename()
 		if not filename == '':
-			img = Image.open(filename)
-			img.thumbnail((350,350), Image.ANTIALIAS)
+			img = PImage.open(filename)
+			img.thumbnail((500,500), PImage.ANTIALIAS)
 			img.save(self.get_medium_filename())
+
+	def delete(self):
+		filename = self.get_image_filename()
+		try:
+			os.remove(self.get_medium_filename())
+		except:
+			pass
+		super(Image, self).delete()
+
+
+	def thumbnail(self):
+		return """<a href="/media/%s"><img border="0" alt="" src="/media/%s" height="40" /></a> """ % (
+			(self.image.name, self.image.name))
+	thumbnail.allow_tags = True
 
 	def is_upcoming_event(self):
 		'''

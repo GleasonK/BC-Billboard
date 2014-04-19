@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
     'img_upload',
+    'PIL',
 
 )
 
@@ -108,7 +109,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-MEDIA_ROOT = 'mediafiles'
+MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 
 # Static asset configuration
