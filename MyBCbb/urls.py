@@ -4,15 +4,14 @@ from MyBCbb import settings
 
 admin.autodiscover()
 
-urlpatterns = [
+urlpatterns = patterns('', 
     # Examples:
-    # url(r'^$', 'MyBCbb.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
     url(r'^admin/', include(admin.site.urls)),
-]
+    url(r'^$', include('img_upload.urls')),
+)
 
 
+##IGNORE - DEBUG
 # Admin static for heroku
 urlpatterns += patterns('',
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
