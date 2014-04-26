@@ -23,10 +23,14 @@ class Album(models.Model):
 class Image(models.Model):
 	image = models.ImageField(upload_to='images/%Y/%m', null=False, blank=False)
 	albums = models.ManyToManyField(Album, blank=True)
+
 	##Add facebook event link? Add location field?
 	##Separate based on ForeignKey(Event) / ForeignKey(Image)
 	# auto
 	#attending = models.ManyToManyField(Attending)
+
+	def __unicode__(self):
+		return unicode(self.image)
 
 	##Enter Size (ex: "m") to get the path to that photo
 	def get_image_path(self, size=''):
@@ -60,6 +64,7 @@ class Image(models.Model):
 		#return str(os.path.basename(self.image.path))
 	## Make a save function that saves the file as well as a small version
 	## of the file
+
 	def save(self):
 		super(Image,self).save()
 		filename = self.get_image_path()
@@ -82,6 +87,8 @@ class Image(models.Model):
 			(self.image.name, self.image.name))
 	thumbnail.allow_tags = True
 
+	def album_(self):
+		return '\n'.join([a.title for a in self.albums.all()])
 	
 class Attending(models.Model):
 	user = models.ForeignKey(User)
@@ -100,9 +107,6 @@ class Event(models.Model):
 	user = models.ForeignKey(User, null=False, blank=True)
 	pub_date = models.DateTimeField(auto_now_add=True)
 	attending = models.ManyToManyField(Attending, blank=True)
-
-	def album_(self):
-		return '\n'.join([a.title for a in self.albums.all()])
 
 	def tags_(self):
 		return '\n'.join([t.tag for t in self.tags.all()])
