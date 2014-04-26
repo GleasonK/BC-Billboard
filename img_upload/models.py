@@ -33,6 +33,7 @@ class Image(models.Model):
 	#attending = models.ManyToManyField(Attending)
 	user = models.ForeignKey(User, null=False, blank=True)
 	pub_date = models.DateTimeField(auto_now_add=True)
+	
 
 	##Enter Size (ex: "m") to get the path to that photo
 	def get_image_path(self, size=''):
