@@ -21,19 +21,12 @@ class Album(models.Model):
 		return self.title
 
 class Image(models.Model):
-	title = models.CharField(max_length=60, null=False, blank = False)
-	eDate = models.DateTimeField()
 	image = models.ImageField(upload_to='images/%Y/%m', null=False, blank=False)
-	tags = models.ManyToManyField(Tag, blank=True)
-	description = models.TextField()
 	albums = models.ManyToManyField(Album, blank=True)
 	##Add facebook event link? Add location field?
 	##Separate based on ForeignKey(Event) / ForeignKey(Image)
 	# auto
 	#attending = models.ManyToManyField(Attending)
-	user = models.ForeignKey(User, null=False, blank=True)
-	pub_date = models.DateTimeField(auto_now_add=True)
-	
 
 	##Enter Size (ex: "m") to get the path to that photo
 	def get_image_path(self, size=''):
@@ -89,11 +82,33 @@ class Image(models.Model):
 			(self.image.name, self.image.name))
 	thumbnail.allow_tags = True
 
+	
+class Attending(models.Model):
+	user = models.ForeignKey(User)
+	#image = models.ForeignKey(Image)
+
+	## Need unicode so it only adds user name and not user object
+	def __unicode__(self):
+		return unicode(self.user)
+
+class Event(models.Model):
+	title = models.CharField(max_length=60, null=False, blank = False)
+	image = models.ForeignKey(Image, blank=False)
+	eDate = models.DateTimeField()
+	tags = models.ManyToManyField(Tag, blank=True)
+	description = models.TextField()
+	user = models.ForeignKey(User, null=False, blank=True)
+	pub_date = models.DateTimeField(auto_now_add=True)
+	attending = models.ManyToManyField(Attending, blank=True)
+
 	def album_(self):
 		return '\n'.join([a.title for a in self.albums.all()])
 
 	def tags_(self):
 		return '\n'.join([t.tag for t in self.tags.all()])
+
+	def attending_(self):
+		return '\n'.join([at.user for at in self.attending.all()])
 
 	def is_upcoming_event(self):
 		'''
@@ -108,10 +123,3 @@ class Image(models.Model):
 	def __unicode__(self):
 		return self.title
 
-class Attending(models.Model):
-	user = models.ForeignKey(User)
-	image = models.ForeignKey(Image)
-
-	## Need unicode so it only adds user name and not user object
-	def __unicode__(self):
-		return unicode(self.user)
