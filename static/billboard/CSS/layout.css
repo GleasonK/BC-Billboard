@@ -1,0 +1,138 @@
+body {
+	min-width: 600px;
+}
+
+*{
+	margin:0;
+	padding:0;
+}
+
+#page-container{
+	position: relative;
+	display: block;
+	width:100%;
+	height:100%;
+	transition: all 0.25s;
+}
+
+
+/* Side Menu Bar */
+
+
+.side-menu {}
+
+.side-menu ul {
+	list-style: none;
+	text-align: center;
+}
+
+.side-menu li{
+	margin:25px;
+}
+
+/* Top Bar */
+
+#top-box {
+	display:block;
+	padding: 0px;
+	width: 100%;
+	height:75px;
+}
+
+.button {
+	border-radius: 5px;
+	height: 45px;
+	box-shadow: 0px 0px 4px rgba(0,0,0,0.5);
+}
+
+#AppContentPad {
+	margin: 0 15px;
+}
+
+#nav-bar /* ,#AppContentPad */{
+	display: block;
+	width:610px;
+	padding:14px 0;
+	position: relative;
+}
+
+.nav-item{
+	position: relative;
+	display: inline;
+	float: left;
+	margin-left: 15px;
+}
+
+#menu-button, #login-button{
+	width: 55px;
+}
+
+.logo {
+	position: relative;
+	margin:0 95px;
+}
+
+/* App */
+
+#AppContainer {
+	min-height: 500px;
+	padding-top: 15px;
+	width:100%;
+	height:100%;
+}
+
+.Grid, .GridCase {
+	position: relative;
+	margin: 0 auto 15px auto;	
+}
+
+.centerInFrame {
+	margin: 0 auto;
+}
+
+/* Isotope */
+
+
+#container div {
+	float:left;
+	width: 20%;
+	height:150px;
+	margin: 0 2px 4px;
+	overflow: hidden;
+}
+
+.item {
+	
+}
+	.item img{
+		width: 100%;
+		height: 100%;
+	}
+	
+.item.w2 {
+	width: 40%;
+}
+	.item.w2 img{
+		/* height */
+	}
+
+.item.h2 {
+	height:300px;
+}
+
+/* Screen snaps */
+
+/* More columns */
+
+@media screen and (min-width: 950px){
+	#nav-bar /* ,#AppContentPad */ {
+		width:910px;
+	}
+
+	.logo {
+		margin:0 240px;
+	}
+}
+
+
+

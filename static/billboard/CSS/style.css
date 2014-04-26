@@ -1,0 +1,46 @@
+#page-container{}
+
+#top-box{
+	background: rgb(240,240,240);
+}
+
+#menu-button {
+	background: url('/Web%20Content/Menu/MyBC.jpg');
+}
+	#menu-button:active {
+		background: url('/Web%20Content/Menu/MyBC2.jpg');
+	}
+
+#login-button {
+	background: url('/Web%20Content/Menu/Login.jpg');
+}
+	#login-button:active {
+		background: url('/Web%20Content/Menu/Login1.jpg');
+	}
+
+#AppContainer{
+	background:url('http://4.bp.blogspot.com/-_0oexty3nmI/Um1q7FtslPI/AAAAAAAAAMc/RBwMjeMwGwg/s1600/Header_Image3.jpg');
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+
+.logo {
+	font-size:35px; 
+	font-weight: bold;
+	color: maroon;
+}
+
+#login-ref{
+	color: maroon;
+	text-decoration: none;
+}
+	#login-ref:hover{
+		color:white;
+	}
+	
+/* Isotope */
+
+.item {
+	box-shadow: 0px 0px 0px 1px white
+}
