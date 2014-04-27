@@ -17,12 +17,14 @@
 	<p>User: {{ event.user }}</p>
 	<p>Attending: {{ event.attending_ }}</p>
 	<ul>
-		Image Properties
+		<h3>Image Properties</h3>
 		<li>Medium fname : {{ event.image.get_medium_filename }}</li>
 		<li>Image location : {{ event.image.get_image_file_loc }}</li>
 		<li>Image dir: {{event.image.get_image_dir}}</li>
 		<li>Image URL: {{event.image.get_image_url}}</li>
 		<li>Image Path: {{event.image.get_image_path}}</li>
+		<li>Image Class Dimensions: {{event.image.get_image_dimensions}}</li>
+
 
 	</ul>
 {% endfor %}

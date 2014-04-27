@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
 from django.utils import timezone
-import datetime, os
+import datetime, os, random
 from PIL import Image as PImage
 ## Need do download Pillow for image handling
 #  http://python-imaging.github.io/Pillow/
@@ -71,6 +71,21 @@ class Image(models.Model):
 		#return str(os.path.basename(self.image.path))
 	## Make a save function that saves the file as well as a small version
 	## of the file
+
+	def get_image_dimensions(self):
+		filename = self.get_image_path()
+		img = PImage.open(filename)
+		(width, height) = img.size
+		rn = random.uniform(0,2)
+		if rn > 1.8:
+			return "w2 h2"
+		elif width > height and rn > 1:
+				return "w2"
+		elif rn > 1:
+			return "h2"
+		else:
+			return ""
+
 
 	def save(self):
 		super(Image,self).save()

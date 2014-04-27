@@ -10,7 +10,7 @@ from img_upload.models import Image, Tag, Attending, Event
 
 #Create your views here.
 class IndexView(generic.ListView):
-	template_name = 'img_upload/index1.php'
+	template_name = 'img_upload/index.php'
 	context_object_name = 'recent_images'
 	#Names the list of things that will be sent to the html from this view
 
