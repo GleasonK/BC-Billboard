@@ -4,13 +4,17 @@
 <h1>Testing</h1>
 <body>
 	
-{% for image in recent_images %}
-	<img src="media/{{ image.image }}" />
-	<p>Hi</p>
-	<p>image: {{image}}</p>
-	<p>image path: {{ image.image }}</p>
-	<p>url {{ image.url }} {{ url }} </p>
-	<p>recent images: {{recent_images.url}}</p>
+{% for event in recent_images %}
+	<img src="media/{{ event.image }}" />
+	<p>image title: {{event}}</p>
+	<p>image path: {{ event.image }}</p>
+	<p>url: {{ event.url }} {{ url }} </p>
+	<p>eDate: {{event.eDate}}</p>
+	<p>tags: {{ event.tags_ }}</p>
+	<p>Description: {{ event.description }}</p>
+	<p>User: {{ event.user }}</p>
+	<p>Attending: {{ event.attending_ }}</p>
+	<p>Image prop: {{ event.image.get_medium_filename }}</p>
 {% endfor %}
 
 </body>

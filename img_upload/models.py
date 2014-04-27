@@ -11,6 +11,7 @@ from PIL import Image as PImage
 
 class Tag(models.Model):
 	tag = models.CharField(max_length=50, blank=True, null=True)
+
 	def __unicode__(self):
 		return self.tag
 
@@ -112,7 +113,7 @@ class Event(models.Model):
 		return '\n'.join([t.tag for t in self.tags.all()])
 
 	def attending_(self):
-		return '\n'.join([at.user for at in self.attending.all()])
+		return '\n'.join([str(at.user) for at in self.attending.all()])
 
 	def is_upcoming_event(self):
 		'''

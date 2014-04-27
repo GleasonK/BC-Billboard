@@ -11,16 +11,16 @@ from img_upload.models import Image, Tag, Attending, Event
 #Create your views here.
 class IndexView(generic.ListView):
 	template_name = 'img_upload/index1.php'
-	context_object_name = 'recent_images' #this names the list of things that will be sent to the html from this view
+	context_object_name = 'recent_images'
+	#Names the list of things that will be sent to the html from this view
 
 	def get_queryset(self):
-		"""Return the most recent 5 uploaded images"""
+		"""Return the most recent uploaded images"""
 		return Event.objects.filter(eDate__gte= timezone.now()).order_by('-eDate')
 
 	def get_context_data(self, **kwargs):
 			# Call the base implementation first to get a context
 			context = super(IndexView, self).get_context_data(**kwargs)
 			# Add in a QuerySet of all the books
-			#t = self.get_queryset()
-			#context['url'] = t[0].get_image_url(context.image)
+			#context['identifier'] = "info"
 			return context

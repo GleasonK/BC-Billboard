@@ -11,7 +11,6 @@ class EventAdmin(admin.ModelAdmin):
 	list_filter = ["tags", "user"]
 
 class ImageAdmin(admin.ModelAdmin):
-
 	search_fields = ["albums"]
 	list_display = ["__unicode__","album_"]
 	list_filter = ["image", "albums"]
