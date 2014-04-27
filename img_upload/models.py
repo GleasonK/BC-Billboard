@@ -49,8 +49,11 @@ class Image(models.Model):
 		return self.image.url
 
 	##Get the location name for HMTL ("images/%Y/%m/...")
-	def get_image_file_loc(self):
-		return self.image.name
+	def get_image_file_loc(self, size=''):
+		return os.sep.join([
+			os.path.dirname(self.image.url),
+			self.get_image_filename(size)
+		])
 
 	## If empty (first call) return the absolute path to image
 	## When calling for size, return with 'size'_'file'.jpg
@@ -62,6 +65,9 @@ class Image(models.Model):
 
 	def get_medium_filename(self):
 		return self.get_image_path("m")
+
+	def get_medium_image(self):
+		return self.get_image_file_loc("m")
 		#return str(os.path.basename(self.image.path))
 	## Make a save function that saves the file as well as a small version
 	## of the file
