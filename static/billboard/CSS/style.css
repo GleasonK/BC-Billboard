@@ -5,17 +5,17 @@
 }
 
 #menu-button {
-	background: url('/Web%20Content/Menu/MyBC.jpg');
+	background: url('/static/billboard/Content/Menu/MyBC.jpg');
 }
 	#menu-button:active {
-		background: url('/Web%20Content/Menu/MyBC2.jpg');
+		background: url('/static/billboard/Content/Menu/MyBC2.jpg');
 	}
 
 #login-button {
-	background: url('/Web%20Content/Menu/Login.jpg');
+	background: url('/static/billboard/Content/Menu/Login.jpg');
 }
 	#login-button:active {
-		background: url('/Web%20Content/Menu/Login1.jpg');
+		background: url('/static/billboard/Content/Menu/Login1.jpg');
 	}
 
 #AppContainer{

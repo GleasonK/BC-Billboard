@@ -34,7 +34,7 @@
 			<!-- DO CLICK WITH jQuery to change image to pressed while down -->
 			<a id = "side-menu" class="nav-item" href="#sidr"><div id = "menu-button" class="button"></div></a>
 			<div class="nav-item logo">My BC Billboard</div>
-			<a href="#"><div id="login-button" class="nav-item button"></div></a>
+			<a href="/admin"><div id="login-button" class="nav-item button"></div></a>
 		</div>
 		
 	</div>
