@@ -14,7 +14,7 @@
 <div id = "sidr" class="side-menu">
 	<center><h1>Menu</h1></center>
 	<ul>
-		<li>Home</li>
+		<a href = "/"><li>Home</li></a>
 		<li>Filters</li>
 		<li>MyBC Evaluations</li>
 		<li>Contact Us</li>

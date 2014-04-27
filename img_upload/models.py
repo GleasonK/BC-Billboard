@@ -81,6 +81,8 @@ class Image(models.Model):
 			return "w2 h2"
 		elif width > height and rn > 1:
 				return "w2"
+		elif width + 10 > height:  #approx a square
+			return ""
 		elif rn > 1:
 			return "h2"
 		else:
