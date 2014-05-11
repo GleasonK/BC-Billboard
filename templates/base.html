@@ -1,0 +1,72 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<link rel="stylesheet" href="{% static "billboard/CSS/layout.css" %}" type="text/css" media="screen" charset="utf-8">
+	<link rel="stylesheet" href="{% static "billboard/CSS/style.css" %}" type="text/css" media="screen" charset="utf-8">
+	<link rel="stylesheet" href="{% static "billboard/CSS/elements.css" %}" type="text/css" media="screen" charset="utf-8">
+	<title>My BC Billboard - {% block title %}Home{% endblock %}</title>
+</head>
+
+<body>
+
+<!-- redo with jQuery -->
+	<div id = "sidr" class="side-menu">
+	<center><h1>Menu</h1></center>
+	{% block side_menu %}
+		<ul>
+			<a href = "/"><li>Home</li></a>
+			<li>Filters</li>
+			<li>MyBC Evaluations</li>
+			<li>Contact Us</li>
+			<li>OPTION 5</li>
+			<h1>Find Club</h1>
+		</ul>
+		<form>
+			<input type="text" placeholder="Search..."
+		</form>
+	{% endblock side_menu %}
+	</div>
+
+
+
+<!-- BEGIN PAGE -->
+<div id = "page-container">
+	<!-- Top Menu -->
+	<div id = "top-box">
+		<div id = "nav-bar" class="centerInFrame">
+			<!-- DO CLICK WITH jQuery to change image to pressed while down -->
+			{% block top_nav %}
+				<a id = "side-menu" class="nav-item" href="#sidr"><div id = "menu-button" class="button"></div></a>
+				<div class="nav-item logo">My BC Billboard</div>
+				<a href="/admin"><div id="login-button" class="nav-item button"></div></a>
+			{% endblock top_nav %}
+			
+		</div>
+		
+	</div>
+	
+	
+	<!-- Application -->
+	{% block page_content %}
+		<h1>Page Under Construction</h1>
+	{% endblock page_content %}
+	
+</div>
+
+
+
+<script type="text/javascript" src = "{% static "billboard/js/jquery-2.1.0.js" %}"></script>
+<script type="text/javascript" src = "{% static "billboard/js/jquery-ui-1.10.4.js" %}"></script>
+<script src="{% static "billboard/js/jquery.sidr.min.js" %}"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#side-menu').sidr();
+	});
+</script>
+{% block javascript %}
+	
+{% endblock javascript %}
+
+</body>
+</html>
